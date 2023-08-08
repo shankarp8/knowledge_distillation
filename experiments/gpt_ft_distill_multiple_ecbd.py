@@ -14,7 +14,7 @@ ROOT_DIR = '/data/shankar/ping_knowledge_injection'
 
 def main():
 
-    # Choose from 'ft_per_ex', 'prepend_def', 'ft_distill_multiple'
+    # Choose from 'ft_per_ex', 'prepend_def', 'ft_distill_multiple (our distillation procedure)'
     ki_method = 'ft_distill_multiple'
 
     # Pretrained model. Use this together with 'ft'.
