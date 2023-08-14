@@ -56,7 +56,7 @@ def main():
         "TRAIN_ON_PROBE": False,
         "COMPUTE_SPECIFICITY": True, #set to False if using prepend_def method 
         "DEVICE":"cuda:2",
-        "DEVICE2":"cuda:3",
+        "DEVICE2":"cuda:2",
         "TEACHER_MODEL":'EleutherAI/gpt-neo-1.3B', #teacher model, same as base model
         "SAMPLE_TEMPERATURE":0.9,
         "SOFTMAX_TEMP":2.0,
