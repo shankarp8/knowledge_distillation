@@ -14,8 +14,8 @@ from .metrics import compute_perplexity_gpt, compute_perplexity_t5, compute_perp
 from .metrics import compute_dist_over_labels_gpt, compute_dist_over_labels_t5
 from .trainer import finetuning, apply_ft_distill_gpt, apply_batched_ft_distill_gpt
 from .edit_func import ft_gpt, ft_t5, prepend_def_t5, prepend_def_gpt
-from .edit_func import mend_gpt, mend_t5, distill_gpt, ft_distill_t5, ft_distill_gpt, multiple_mask_distill_t5, ent_str_distill_gpt
-from .edit_func import ft_llama, ft_distill_llama, distill_llama, prepend_def_llama, rome_gpt
+from .edit_func import mend_gpt, mend_t5, ft_distill_gpt, multiple_mask_distill_t5
+from .edit_func import prepend_def_llama, rome_gpt
 from .data_utils import to_tsr_gpt_ecbd, to_tsr_t5_ecbd, to_tsr_llama_ecbd, load_json
 from .data_utils import format_gpt_data, format_gpt_data_entity_inferences, format_gpt2_data, format_gpt_data_entity_inferences, format_llama_data, format_gpt2_data_entity_inferences
 from .data_utils import to_tsr_gpt_entity_inference, to_tsr_t5_entity_inference
