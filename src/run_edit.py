@@ -279,6 +279,8 @@ def run_edit_entity_inference(data,
                 batch["edit_inner"][j]['left_context_ps'].to(model_raw.device),
                 batch["edit_inner"][j]['right_context_ps'].to(model_raw.device)
             )
+            if model_ft is None:
+                model_ft = model_raw
 
             labels, post_probs, post_lls = compute_dist_over_labels_gpt(
                 tokenizer,
@@ -934,8 +936,7 @@ def run_edit_ecbd(data,
                     pre_edit_logits, post_edit_logits, pre_edit_dict, post_edit_dict, _, _,  = edit_func(
                         batch,
                         batch_prepended_def,
-                        model_raw,
-                        model_ft)
+                        model_raw)
 
 
                 elif edit_method == 'rome':
@@ -953,10 +954,6 @@ def run_edit_ecbd(data,
                         _, _, \
                         pre_loc_logits, post_loc_logits, \
                         _, _  = response
-
-
-    
-                
 
                 
                 elif edit_method == 'ft_distill':
