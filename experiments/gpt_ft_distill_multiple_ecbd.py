@@ -54,7 +54,7 @@ def main():
         "TOPK": 1,
         "MEMORY_RETRIEVAL": False,
         "TRAIN_ON_PROBE": False,
-        "COMPUTE_SPECIFICITY": True,
+        "COMPUTE_SPECIFICITY": True, #set to False if using prepend_def method 
         "DEVICE":"cuda:2",
         "DEVICE2":"cuda:3",
         "TEACHER_MODEL":'EleutherAI/gpt-neo-1.3B', #teacher model, same as base model
