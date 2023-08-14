@@ -21,7 +21,6 @@ from .data_utils import format_gpt_data, format_gpt_data_entity_inferences, form
 from .data_utils import to_tsr_gpt_entity_inference, to_tsr_t5_entity_inference
 from torch.cuda.amp import GradScaler, autocast
 from .data_utils import SPECIFICITY_DATA_PATH
-from .pseudo_input import pseudo_input
 
 class SimpleNamespace:
     def __init__(self, **kwargs):
