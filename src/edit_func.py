@@ -206,8 +206,8 @@ def ft_distill_gpt(batch, model_raw, model_ft, train_params, teacher, tokenizer,
     counter=0
     # model_ft = copy.deepcopy(model_raw)
     for probey in sample: #distill information from each probe to model
-        model_temp = gpt_distill(model=model_ft, train_params=train_params, teacher=teacher, tokenizer=tokenizer, context=context, ent_str=ent_str, 
-                                                probey=probey, device=device)
+        model_temp = gpt_distill_after_entity_span(model=model_ft, train_params=train_params, teacher=teacher, tokenizer=tokenizer, context=context, ent_str=ent_str, 
+                                                probey=probey, device=device, after_ent_span=False)
         if model_temp!=False:
             model_ft = model_temp
             counter+=1
