@@ -603,7 +603,7 @@ def run_edit_ecbd(data,
         num_per_batch = train_params['NUM_EDITS']
         example_set = []
         example_set = [ent[1] for i, ent in enumerate(data[:])]
-        edit_sets = split_array(example_set, num_per_batch, even=True)
+        edit_sets = split_array(example_set, num_per_batch, even=False)
         generate_sentences = False
         if num_per_batch == 1:
             generate_sentences = False
