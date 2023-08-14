@@ -21,7 +21,6 @@ import sys
 import time
 sys.path.insert(1, '/data/users/shankar/ping_knowledge_injection/src')
 from distill_gpt import gpt_distill_after_entity_span
-from distill_llama import llama_distill, llama_distill_after_entity_span, llama_distill_after_entity_span_v2
 from transformers import EvalPrediction
 # from sklearn.metrics import accuracy_score
 
@@ -287,8 +286,6 @@ def finetuning(model, tokenizer, ex, model_params, device):
     training_loader = DataLoader(training_set, **train_params)
     optimizer = torch.optim.Adam(params=model.parameters(),
                                  lr=model_params["LEARNING_RATE"])
-    print('GPU MEMORY USAGE BEFORE TRAIN LOOP')
-    print(get_gpu_memory_usage())
 
     all_losses = []
     for epoch in range(model_params["TRAIN_EPOCHS"]):
