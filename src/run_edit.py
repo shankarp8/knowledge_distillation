@@ -227,11 +227,6 @@ def run_edit_entity_inference(data,
                 specificity_batches=specificity_batches,
                 dataset_name=dataset_name)
 
-
-
-        
-
-
         elif edit_method == 'prepend_def':
             batch_prepended_def = to_tsr(tokenizer,
                                          ex,
@@ -243,7 +238,8 @@ def run_edit_entity_inference(data,
             pre_edit_dict, post_edit_dict, \
             post_loc_dict, pre_loc_dict = edit_func(batch,
                                                     batch_prepended_def,
-                                                    model_raw)
+                                                    model_raw,
+                                                    dataset_name='ei')
         elif edit_method == 'random_def':
             batch_prepended_def = to_tsr(tokenizer,
                                          ex,
