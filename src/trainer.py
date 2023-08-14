@@ -104,7 +104,7 @@ def train(tokenizer, model, device, loader, optimizer, model_params):
                 ids = data['input_ids'].to(device, dtype=torch.long)
                 mask = data['input_mask'].to(device, dtype=torch.long)
 
-                outputs = model_engine(input_ids=ids,
+                outputs = model(input_ids=ids,
                                 attention_mask=mask,
                                 decoder_input_ids=y_ids,
                                 labels=lm_labels)
