@@ -6,13 +6,13 @@ import sys
 import pickle
 from scipy import stats
 
-sys.path.append('/data/shankar/ping_knowledge_injection')
+sys.path.append('/data/shankar/knowledge_distillation')
 from transformers import set_seed
 from src import metrics
 from src import run_edit
 from src import data_utils
 
-ROOT_DIR = '/data/shankar/ping_knowledge_injection'
+ROOT_DIR = '/data/shankar/knowledge_distillation'
 
 def main():
 
