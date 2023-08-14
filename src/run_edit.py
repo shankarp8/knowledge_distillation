@@ -185,7 +185,6 @@ def run_edit_entity_inference(data,
             _, _, \
             pre_loc_dicts, post_loc_dicts = edit_func(
                 batch,
-                batch2, 
                 model_ft,
                 model_raw=model_raw,
                 specificity_batches=specificity_batches,
