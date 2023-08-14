@@ -469,33 +469,87 @@ def prepend_def_t5(batch_pre, batch_post, model, model_ft=None):
 
     return pre_edit_logits, post_edit_logits, pre_edit_dict, post_edit_dict, post_loc_dict, pre_loc_dict
 
+def prepend_def_gpt(batch_pre, batch_post, model, dataset_name='ecbd'):
 
-def prepend_def_gpt(batch_pre, batch_post, model, model_ft=None):
     # No def
     with torch.no_grad():
-        ex = batch_pre["edit_inner"][0]['probe_sentence'].to(model.device)
-        ex['labels'] = batch_pre["edit_inner"][0]['labels']['input_ids'][
-            0].unsqueeze(0).to(model.device) # Dummy label
-        ex['attention_mask'] = batch_pre["edit_inner"][0]['labels'][
-            'attention_mask'][0].unsqueeze(0).to(model.device)
+        if dataset_name == 'ecbd':
+            ex = {}
+            ex['input_ids'] = batch_pre["edit_inner"][0]['probe_sentence'][
+                'input_ids'][0].unsqueeze(0)
+            ex['labels'] = batch_pre["edit_inner"][0]['probe_sentence'][
+                'input_ids'][0].unsqueeze(0)  # Dummy label
+            ex['attention_mask'] = batch_pre["edit_inner"][0]['probe_sentence'][
+                'attention_mask'][0].unsqueeze(0)
+        else:
+            ex = {}
+            ex['input_ids'] = batch_pre["edit_inner"][0]['labels']['input_ids'][
+                0].unsqueeze(0)
+            ex['attention_mask'] = batch_pre["edit_inner"][0]['labels'][
+                'attention_mask'][0].unsqueeze(0)
+            ex['labels'] = batch_pre["edit_inner"][0]['labels']['input_ids'][
+                0].unsqueeze(0)
+
         pre_edit_logits = model(**ex).logits
 
     # Prepend def
     with torch.set_grad_enabled(False):
-        ex = batch_post["edit_inner"][0]['probe_sentence'].to(model.device)
-        ex['labels'] = \
-        batch_post["edit_inner"][0]['probe_sentence']['input_ids'][0].unsqueeze(0).to(model.device)
-        ex['attention_mask'] = batch_post["edit_inner"][0]['probe_sentence'][
-            'attention_mask'][0].unsqueeze(0).to(model.device)
+
+        if dataset_name == 'ecbd':
+            ex = {}
+            ex['input_ids'] = batch_post["edit_inner"][0]['probe_sentence'][
+                'input_ids'][0].unsqueeze(0)
+            ex['labels'] = batch_post["edit_inner"][0]['probe_sentence'][
+                'input_ids'][0].unsqueeze(0)  # Dummy label
+            ex['attention_mask'] = batch_post["edit_inner"][0][
+                'probe_sentence']['attention_mask'][0].unsqueeze(0)
+
+        else:
+            ex = {}
+            ex['input_ids'] = batch_post["edit_inner"][0]['labels'][
+                'input_ids'][
+                0].unsqueeze(0)
+            ex['attention_mask'] = batch_post["edit_inner"][0]['labels'][
+                'attention_mask'][0].unsqueeze(0)
+            ex['labels'] = batch_post["edit_inner"][0]['labels']['input_ids'][
+                0].unsqueeze(0)
+
         post_edit_logits = model(**ex).logits
 
 
+    with torch.no_grad():
+        n_probe_labels = batch_pre['edit_inner'][0]['labels']['input_ids'].size(
+            0)
+        pre_edit_dict = []
+        post_edit_dict = []
+
+        for i in range(n_probe_labels):
+            if dataset_name == 'ecbd':
+                pre_label = \
+                batch_pre["edit_inner"][0]["probe_sentence"]['input_ids'][
+                    i].unsqueeze(0)
+                post_label = \
+                batch_post["edit_inner"][0]['probe_sentence']['input_ids'][
+                    i].unsqueeze(0)
+            else:
+                pre_label = \
+                batch_pre["edit_inner"][0]['labels']['input_ids'][
+                    i].unsqueeze(0)
+                post_label = \
+                batch_post["edit_inner"][0]['labels']['input_ids'][
+                    i].unsqueeze(0)
+
+            pre_edit_dict.append(
+                get_log_probs(pre_edit_logits, pre_label, shift=True))
+
+            post_edit_dict.append(
+                get_log_probs(post_edit_logits, post_label, shift=True))
+
     post_loc_dict = None
-    pre_edit_dict = None
-    post_edit_dict = None
     pre_loc_dict = None
 
-    return pre_edit_logits, post_edit_logits, pre_edit_dict, post_edit_dict, post_loc_dict, pre_loc_dict
+    return pre_edit_logits, post_edit_logits, pre_edit_dict, post_edit_dict, \
+           post_loc_dict, pre_loc_dict
 
 
 
