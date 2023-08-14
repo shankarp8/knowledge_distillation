@@ -60,6 +60,7 @@ def main():
         "TEACHER_MODEL":'EleutherAI/gpt-neo-1.3B', #teacher model, same as base model
         "SAMPLE_TEMPERATURE":0.9,
         "SOFTMAX_TEMP":2.0,
+        "FT_LAST_LAYER":False, #for fine-tuning, if set True then only the last layer of the model is edited
         "NUM_EDITS":1, # number of entities to edit information for at once
         "NUM_PROBES":5, # number of transfer sentences per entity
         "NUM_UPDATES":5, # number of gradient updates per transfer sentence
