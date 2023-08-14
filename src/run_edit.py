@@ -102,8 +102,7 @@ def run_edit_entity_inference(data,
             edit_func = ft_t5
     
     elif edit_method == 'ft_distill':
-        if 'gpt2' in train_params['BASE_MODEL']:
-            edit_func = ft_distill_gpt
+        edit_func = ft_distill_gpt
 
 
 
