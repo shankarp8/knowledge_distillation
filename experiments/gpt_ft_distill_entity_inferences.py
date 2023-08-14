@@ -61,6 +61,7 @@ def main():
         "MEMORY_RETRIEVAL": False,
         "TRAIN_ON_PROBE": False,
         "COMPUTE_SPECIFICITY": True,
+        "FT_LAST_LAYER":False,
         "NUM_PROBES":5,
         "NUM_UPDATES":5,
         "SOFTMAX_TEMP":2.0,
