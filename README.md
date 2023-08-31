@@ -1,6 +1,6 @@
 # Propagating Knowledge in LMs Through Distillation 
 
-Paper: https://arxiv.org/pdf/2306.09306v1.pdf
+This is the official repository of the paper [Propagating Knowledge Updates to LMs via Distillation](https://arxiv.org/pdf/2306.09306v1.pdf)
 
 Abstract:
 
