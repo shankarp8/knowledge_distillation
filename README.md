@@ -1,8 +1,8 @@
 # Propagating Knowledge in LMs Through Distillation 
 
 This is the official repository of the paper: 
-> [Propagating Knowledge Updates to LMs Through Distillation](https://arxiv.org/pdf/2306.09306v1.pdf)
-> Shankar Padmanabhan, Yasumasa Onoe, Michael J.Q. Zhang, Greg Durrett, Eunsol Choi
+> [Propagating Knowledge Updates to LMs Through Distillation](https://arxiv.org/pdf/2306.09306v1.pdf) <br/>
+> Shankar Padmanabhan, Yasumasa Onoe, Michael J.Q. Zhang, Greg Durrett, Eunsol Choi <br/>
 > NeurIPS 2023
 
 ## Getting Started 
