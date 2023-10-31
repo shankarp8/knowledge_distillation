@@ -1,26 +1,42 @@
 # Propagating Knowledge in LMs Through Distillation 
 
-This is the official repository of the paper [Propagating Knowledge Updates to LMs via Distillation](https://arxiv.org/pdf/2306.09306v1.pdf)
+This is the official repository of the paper: 
+> [Propagating Knowledge Updates to LMs Through Distillation](https://arxiv.org/pdf/2306.09306v1.pdf)
+> Shankar Padmanabhan, Yasumasa Onoe, Michael J.Q. Zhang, Greg Durrett, Eunsol Choi
+> NeurIPS 2023
 
-Abstract:
+## Getting Started 
 
-Modern language models have the capacity to store and use immense amounts
-of knowledge about real-world entities, but it remains unclear how to update
-their implicit “knowledge bases.” Prior methods for updating knowledge in LMs
-successfully inject facts, but LMs then fail to make inferences based on these
-injected facts. In this work, we demonstrate that a context distillation-based
-approach can both impart knowledge about entities and propagate that knowledge
-to enable broader inferences. Our approach consists of two stages: transfer set
-generation and distillation on the transfer set. We first generate a transfer set by
-simply prompting a language model to generate a continuation from the entity
-definition. Then, we update the model parameters such that the distribution of the
-LM (the student) distribution matches the distribution of the LM conditioned on
-the definition (the teacher) on the transfer set. Our experiments demonstrate that
-this approach is more effective in propagating knowledge updates compared to fine-
-tuning and other gradient-based knowledge-editing methods without compromising
-performance in other contexts, even when injecting multiple entities at once.
+This codebase uses Python 3.7.9. 
 
-<img width="1156" alt="image" src="https://github.com/shankarp8/knowledge_distillation/assets/47063867/2d111b0d-9067-48d4-86ab-8f318355d629">
+```
+$ conda create -n knowledge_distill -y python=3.7.9
+$ conda activate knowledge_distill
+(knowledge_distill) $ pip install -r requirements.txt
+```
+## Running experiments
 
+To run experiments, run a file from the root directory. There are two files, one for Entity Inferences and one for ECBD.
+
+Example: 
+```
+(knowledge_distill) $ python experiments/gpt_ecbd.py
+```
+To choose the editing method, change 'ki_method' in experiments/gpt_ecbd.py or experiments/gpt_entity_inferences.py accordingly. 
+
+Compatibility with ROME and MEND will be added soon.
+
+## Citing the paper
+```
+@article{padmanabhan_2023_distill,
+  title={Propagating Knowledge Updates in LMs Through Distillation},
+  author={Shankar Padmanabhan and Yasumasa Onoe and Michael J.Q. Zhang and Greg Durrett and Eunsol Choi},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2023}
+}
+```
+## Contact
+Please contact shankarpadmanabhan@utexas.edu if you have any questions or concerns.
 
 
