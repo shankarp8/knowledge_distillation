@@ -46,8 +46,8 @@ def main():
         "MAX_SOURCE_TEXT_LENGTH": 128,  # max length of source text
         "MAX_TARGET_TEXT_LENGTH": 128,  # max length of target text
         "SEED": 2022,  # set seed for reproducibility
-        "AUGMENT": False, # set to True for augmented fine-tuning 
-        "NUM_AUGMENT": 1, # number of transfer sentences to fine-tune on
+        "AUGMENT": False,  
+        "NUM_AUGMENT": 1, 
         "X_IS_Y": False,
         "MASKING_STRATEGY": 'random',
         "USE_NLL_MASKS": False,
