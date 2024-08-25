@@ -13,7 +13,7 @@ from transformers import T5ForConditionalGeneration, T5Tokenizer, AutoModelForSe
 from .metrics import compute_perplexity_gpt, compute_perplexity_t5, compute_perplexity_llama, compute_perplexity_over_sentence
 from .metrics import compute_dist_over_labels_gpt, compute_dist_over_labels_t5
 from .trainer import finetuning, apply_ft_distill_gpt, apply_batched_ft_distill_gpt
-from .edit_func import ft_gpt, ft_t5, prepend_def_t5, prepend_def_gpt
+from .edit_func import ft_gpt, ft_t5, prepend_def_t5, prepend_def_gpt, ft_gpt_entity_inferences, ft_distill_gpt_entity_inferences
 from .edit_func import mend_gpt, mend_t5, ft_distill_gpt, multiple_mask_distill_t5
 from .edit_func import rome_gpt
 from .data_utils import to_tsr_gpt_ecbd, to_tsr_t5_ecbd, to_tsr_llama_ecbd, load_json
@@ -86,7 +86,7 @@ def run_edit_entity_inference(data,
         # Load a finetuned model.
         checkpoint = f'/mnt/data1/yasu/newent/ft_outputs/{model_name}/model_files'
         if train_params['BASE_MODEL'] == 'gpt-neo-1.3B':
-            edit_func = ft_gpt
+            edit_func = ft_gpt_entity_inferences
             model_ft = GPTNeoForCausalLM.from_pretrained(checkpoint)
         elif train_params['BASE_MODEL'] in ['t5-large','t5-3b']:
             edit_func = ft_t5
@@ -102,7 +102,7 @@ def run_edit_entity_inference(data,
             edit_func = ft_t5
     
     elif edit_method == 'ft_distill':
-        edit_func = ft_distill_gpt
+        edit_func = ft_distill_gpt_entity_inferences
 
 
 
